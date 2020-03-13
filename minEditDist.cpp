@@ -16,10 +16,13 @@ int minEditDist(string str1, string str2, int str1_length, int str2_length) {
     if(str1[str1_length - 1] == str2[str2_length - 1])
         return minEditDist(str1, str2, str1_length - 1, str2_length - 1);
     
-    return 1 + min(minEditDist(str1, str2, str1_length, str2_length-1), //Insert
-                   minEditDist(str1, str2, str1_length-1, str2_length), //Remove
-                   minEditDist(str1, str2, str1_length-1, str2_length-1)
-		); //Replace
+    if (minEditDist(str1, str2, str1_length, str2_length-1) < minEditDist(str1, str2, str1_length-1, str2_length) && minEditDist(str1, str2, str1_length, str2_length-1) < minEditDist(str1, str2, str1_length-1, str2_length-1)) {
+        return 0.7 + minEditDist(str1, str2, str1_length, str2_length-1);
+    } else if (minEditDist(str1, str2, str1_length-1, str2_length) < minEditDist(str1, str2, str1_length, str2_length-1) && minEditDist(str1, str2, str1_length-1, str2_length) < minEditDist(str1, str2, str1_length-1, str2_length-1)) {
+        return 0.9 + minEditDist(str1, str2, str1_length-1, str2_length);
+    } else {
+        return 1.0 + minEditDist(str1, str2, str1_length-1, str2_length-1);
+    }
 }
 
 int main() {
