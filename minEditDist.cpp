@@ -6,7 +6,7 @@ int min(int x, int y, int z) {
     return min(min(x,y),z);
 }
 
-int minEditDist(string str1, string str2, int str1_length, int str2_length) {
+double minEditDist(string str1, string str2, int str1_length, int str2_length) {
     if (str1_length == 0) {
         return str2_length;
     }
@@ -32,5 +32,5 @@ int main() {
     cin >> first;
     cout << "Enter second string: ";
     cin >> second;
-    cout << "Minimum edit distance for both strings is: " << minEditDist(first, second, first.length(), second.length());
+    cout << "Minimum edit distance for both strings is: " << minEditDist(first, second, first.length(), second.length()) << endl;
 }
