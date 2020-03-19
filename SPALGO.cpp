@@ -2,6 +2,9 @@
 // the above approach 
 // #include <bits/stdc++.h>
 #include <stdlib.h> 
+#include <iostream>
+#include <cmath>
+
 using namespace std; 
 #define INFINITE 10000 
   
