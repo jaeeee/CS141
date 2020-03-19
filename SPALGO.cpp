@@ -11,40 +11,40 @@ using namespace std;
 // Function to store the  
 // length of shortest path  
 // between all pairs of nodes 
-void shortestPathLength(int n, int graph[4][4], int dis[4][4]) 
+void SPalgo(int n, int graph[V][V], int dis[V][V]) 
 { 
-  // Intialising dis matrix  
-  // with current distance value   
-  for (int i = 0; i < n; i++) { 
-      for (int j = 0; j < n; j++) { 
-          dis[i][j] = graph[i][j]; 
+  for (int a = 0; a < n; a++) { 
+      for (int b = 0; b < n; b++) { 
+          dis[a][b] = graph[a][b]; 
       } 
   } 
   
-  // Floyd-Warshall Algorithm 
-  for (int k = 0; k < n; k++) { 
-    for (int i = 0; i < n; i++) { 
-      for (int j = 0; j < n; j++) { 
-          dis[i][j] = min(dis[i][j], dis[i][k] + dis[k][j]); 
-      } 
-    } 
-  } 
+  // Dijkstra's
+	int length[V];
+	bool set[V];
+	for(int i = 0; i < V; ++i) {
+		length[i] = INT_MAX, set[i] = false;
+	}
+	length[n] = 0;
+	for(int j = 0; j < V - 1l ++j) {
+		int k = minDist(length, set);
+		set[k] = true;
+		for(int m = 0; m < V; m++) {
+			if(!set[m] && graph[k][m] && length[k] != INT_MAX && length[k] + graph[k][m] < length[m]) {
+				length[m] = length[k] + length[k][m];
+			}
+		}
+	}
+	check(n,length,dis);
 } 
   
-// A function that prints YES if the 
-// given path is the shortest path 
-// and prints NO if the given path 
-// is not shortest 
-void checkShortestPath(int length, int path[], int dis[4][4]) 
+bool check(int size, int path[], int dis[V][V]) 
 { 
-  // Check if the given path 
-  // is shortest or not 
-  // as discussed in above approach 
-  if (dis[path[0] - 1][path[length - 1] - 1] == length - 1) { 
-      cout << "YES" << endl; 
+  if (dis[path[0] - 1][path[size - 1] - 1] == size - 1) { 
+      return true;
   } 
   else { 
-      cout << "NO" << endl; 
+      return false;
   } 
 } 
   
