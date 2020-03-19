@@ -1,5 +1,6 @@
 #include <iostream>
-#include <bits/stdc++.h>
+#include <stdlib.h>
+// #include <bits/stdc++.h>
 using namespace std;
 
 int min(int x, int y, int z) {
